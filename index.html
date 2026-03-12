@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYBERBOTICS — Security &amp; Robotics 101</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+  <canvas id="circuit-canvas"></canvas>
+
+  <nav>
+    <a href="#" class="nav-logo">CYBER<span>BOTICS</span></a>
+    <ul class="nav-links">
+      <li><a href="#lessons-section">Lessons</a></li>
+      <li><a href="#arduino-section">Arduino</a></li>
+      <li><a href="#cyber-section">Threats</a></li>
+      <li><a href="#circuit-section">Circuits</a></li>
+      <li><a href="#quiz-section">Quiz</a></li>
+      <li><a href="#tips-section">Tips</a></li>
+    </ul>
+    <div class="nav-auth" id="navAuth">
+      <button class="nav-auth-btn" onclick="openAuth('login')">LOGIN</button>
+      <button class="nav-auth-btn primary" onclick="openAuth('signup')">SIGN UP</button>
+    </div>
+    <div class="nav-user hidden" id="navUser">
+      <span class="nav-user-name" id="navUserName">OPERATOR</span>
+      <button class="nav-auth-btn logout" onclick="logout()">LOGOUT</button>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#lessons-section" onclick="closeMenu()">// LESSONS</a>
+    <a href="#arduino-section" onclick="closeMenu()">// ARDUINO</a>
+    <a href="#cyber-section"   onclick="closeMenu()">// THREATS</a>
+    <a href="#circuit-section" onclick="closeMenu()">// CIRCUITS</a>
+    <a href="#quiz-section"    onclick="closeMenu()">// QUIZ</a>
+    <a href="#tips-section"    onclick="closeMenu()">// TIPS</a>
+  </div>
+
+  <section id="hero">
+    <div class="status-bar">
+      <span class="pulse-dot"></span>
+      SYSTEM ONLINE — NODE 0x4F2A — PACKET LOSS: 0%
+    </div>
+    <h1 class="hero-title">
+      <span class="line1"><span class="glitch" data-text="CYBERBOTICS">CYBERBOTICS</span></span>
+      <span class="line2">SECURITY &amp; ROBOTICS 101</span>
+    </h1>
+    <p class="hero-sub">
+      DECRYPT THE FUNDAMENTALS OF CYBERSECURITY<br>
+      AND BUILD INTELLIGENT MACHINES WITH ARDUINO.<br>
+      YOUR INITIATION BEGINS NOW.
+    </p>
+    <div class="hero-btns">
+      <a href="#lessons-section" class="btn-primary">START LEARNING</a>
+      <a href="#quiz-section"    class="btn-secondary">TAKE QUIZ</a>
+    </div>
+
+    <div class="hero-access-banner" id="heroAccessBanner">
+      <span class="access-icon">🔒</span>
+      <span>You're in <strong>guest mode</strong> — sign up free to unlock all lessons, advanced quiz features, progress tracking &amp; more.</span>
+      <button class="access-cta" onclick="openAuth('signup')">UNLOCK FULL ACCESS</button>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      SCROLL TO EXPLORE
+    </div>
+  </section>
+
+  <section id="lessons-section">
+    <div class="section-label">LEARNING PATH</div>
+    <h2 class="section-title reveal">Structured <em>Lessons</em></h2>
+    <p class="section-desc reveal">Choose your level. Each tier builds on the last — master the basics before you escalate.</p>
+
+    <div class="level-selector reveal">
+      <button class="level-btn active" onclick="switchLevel('beginner', this)">
+        <span class="level-icon">🟢</span>
+        <span class="level-label">BEGINNER</span>
+        <span class="level-sub">Foundations</span>
+      </button>
+      <button class="level-btn" onclick="switchLevel('intermediate', this)">
+        <span class="level-icon">🟡</span>
+        <span class="level-label">INTERMEDIATE</span>
+        <span class="level-sub">Core Concepts</span>
+      </button>
+      <button class="level-btn" onclick="switchLevel('advanced', this)">
+        <span class="level-icon">🔴</span>
+        <span class="level-label">ADVANCED</span>
+        <span class="level-sub">Deep Dives</span>
+      </button>
+    </div>
+
+    <!-- BEGINNER PANEL -->
+    <div class="lesson-panel active" id="lessons-beginner">
+      <div class="lesson-track-label">
+        <span class="track-dot beginner"></span> BEGINNER TRACK — CYBER &amp; ROBOTICS FOUNDATIONS
+      </div>
+      <div class="lesson-grid">
+
+        <div class="lesson-card reveal" data-lesson="L01">
+          <div class="lesson-header beginner-header">
+            <span class="lesson-num">L01</span><span class="lesson-tag">CYBER</span>
+          </div>
+          <h3 class="lesson-title">What is Cybersecurity?</h3>
+          <p class="lesson-body">Cybersecurity is the practice of protecting computers, servers, networks, and data from malicious attacks. Think of it as digital self-defense — just as you lock your house, you secure your systems.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 CIA Triad: <strong>Confidentiality</strong>, <strong>Integrity</strong>, <strong>Availability</strong></div>
+            <div class="kp">🔑 Threats come from hackers, malware, phishing, and human error</div>
+            <div class="kp">🔑 Anyone online needs basic cyber hygiene</div>
+          </div>
+          <div class="lesson-links" data-auth-required="false">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://www.cisco.com/c/en/us/products/security/what-is-cybersecurity.html" target="_blank" rel="noopener" class="lesson-ext-link">📖 Cisco: What is Cybersecurity?</a>
+            <a href="https://www.youtube.com/watch?v=inWWhr5tnEA" target="_blank" rel="noopener" class="lesson-ext-link">🎥 YouTube: Cybersecurity in 7 Minutes</a>
+          </div>
+          <div class="lesson-footer">
+            <span class="lesson-time">⏱ 5 min</span>
+            <span class="lesson-diff beginner">BEGINNER</span>
+            <button class="lesson-complete-btn" data-lesson="L01" onclick="toggleComplete('L01', this)">✓ MARK DONE</button>
+          </div>
+        </div>
+
+        <div class="lesson-card reveal" data-lesson="L02" style="transition-delay:0.1s">
+          <div class="lesson-header beginner-header">
+            <span class="lesson-num">L02</span><span class="lesson-tag">ROBOTICS</span>
+          </div>
+          <h3 class="lesson-title">What is a Microcontroller?</h3>
+          <p class="lesson-body">A microcontroller is a tiny computer on a single chip. It has a CPU, RAM, Flash storage, and programmable I/O pins. The Arduino Uno uses the ATmega328P, clocked at 16 MHz.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 CPU: executes your code instruction by instruction</div>
+            <div class="kp">🔑 Flash: stores your uploaded program (32KB on Uno)</div>
+            <div class="kp">🔑 GPIO Pins: interface with LEDs, sensors, motors</div>
+          </div>
+          <div class="lesson-links" data-auth-required="false">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://docs.arduino.cc/learn/starting-guide/whats-arduino/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Arduino Official: What is Arduino?</a>
+            <a href="https://www.youtube.com/watch?v=CqrQmQqpHXc" target="_blank" rel="noopener" class="lesson-ext-link">🎥 YouTube: Microcontrollers Explained</a>
+          </div>
+          <div class="lesson-footer">
+            <span class="lesson-time">⏱ 5 min</span>
+            <span class="lesson-diff beginner">BEGINNER</span>
+            <button class="lesson-complete-btn" data-lesson="L02" onclick="toggleComplete('L02', this)">✓ MARK DONE</button>
+          </div>
+        </div>
+
+        <div class="lesson-card reveal" data-lesson="L03" style="transition-delay:0.2s">
+          <div class="lesson-header beginner-header">
+            <span class="lesson-num">L03</span><span class="lesson-tag">CYBER</span>
+          </div>
+          <h3 class="lesson-title">Passwords &amp; Authentication</h3>
+          <p class="lesson-body">Authentication verifies who you are. A weak password is like leaving your key under the doormat. Strong passwords are long, random, and unique to each account.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 Minimum 12 characters — mix letters, numbers, symbols</div>
+            <div class="kp">🔑 Never reuse passwords across different sites</div>
+            <div class="kp">🔑 Password managers generate and store them safely</div>
+          </div>
+          <div class="lesson-links" data-auth-required="false">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://bitwarden.com/resources/guide-how-to-use-a-password-manager/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Bitwarden: Password Manager Guide</a>
+            <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener" class="lesson-ext-link">🔍 HaveIBeenPwned: Check your email</a>
+          </div>
+          <div class="lesson-footer">
+            <span class="lesson-time">⏱ 4 min</span>
+            <span class="lesson-diff beginner">BEGINNER</span>
+            <button class="lesson-complete-btn" data-lesson="L03" onclick="toggleComplete('L03', this)">✓ MARK DONE</button>
+          </div>
+        </div>
+
+        <div class="lesson-card reveal" data-lesson="L04" style="transition-delay:0.3s">
+          <div class="lesson-header beginner-header">
+            <span class="lesson-num">L04</span><span class="lesson-tag">ROBOTICS</span>
+          </div>
+          <h3 class="lesson-title">Your First Circuit: LED Blink</h3>
+          <p class="lesson-body">The "Hello World" of robotics — making an LED blink. Connect components on a breadboard, use a current-limiting resistor, and write your first Arduino sketch using <code>setup()</code> and <code>loop()</code>.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 <code>pinMode(13, OUTPUT)</code> — configure pin as output</div>
+            <div class="kp">🔑 <code>digitalWrite(13, HIGH)</code> — send 5V to turn LED on</div>
+            <div class="kp">🔑 <code>delay(1000)</code> — pause execution for 1000ms</div>
+          </div>
+          <div class="lesson-links" data-auth-required="false">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://docs.arduino.cc/built-in-examples/basics/Blink/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Arduino Official: Blink Tutorial</a>
+            <a href="https://www.tinkercad.com/learn/circuits" target="_blank" rel="noopener" class="lesson-ext-link">🛠 Tinkercad: Simulate Circuits Online</a>
+          </div>
+          <div class="lesson-footer">
+            <span class="lesson-time">⏱ 8 min</span>
+            <span class="lesson-diff beginner">BEGINNER</span>
+            <button class="lesson-complete-btn" data-lesson="L04" onclick="toggleComplete('L04', this)">✓ MARK DONE</button>
+          </div>
+        </div>
+
+        <!-- L05 + L06 locked for guests -->
+        <div class="lesson-card reveal lesson-locked-card" data-lesson="L05" style="transition-delay:0.4s" id="card-L05">
+          <div class="lesson-header beginner-header">
+            <span class="lesson-num">L05</span><span class="lesson-tag">BOTH</span>
+          </div>
+          <h3 class="lesson-title">Networks: How Devices Talk</h3>
+          <p class="lesson-body">Every internet device has an IP address — its unique identifier. Data travels in packets over TCP/IP. Understanding networking is essential for securing systems and building connected robots (IoT).</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 IP Address: your device's location on the network</div>
+            <div class="kp">🔑 Router: directs traffic between devices and the internet</div>
+            <div class="kp">🔑 Port: a specific "door" on a device for a service (e.g. port 80 = HTTP)</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://www.cloudflare.com/learning/network-layer/what-is-a-packet/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Cloudflare: What is a Network Packet?</a>
+            <a href="https://www.youtube.com/watch?v=3QhU9jd03a0" target="_blank" rel="noopener" class="lesson-ext-link">🎥 YouTube: How the Internet Works</a>
+            <a href="https://tryhackme.com/room/whatisnetworking" target="_blank" rel="noopener" class="lesson-ext-link">🎮 TryHackMe: What is Networking?</a>
+          </div>
+          <div class="lesson-footer">
+            <span class="lesson-time">⏱ 6 min</span>
+            <span class="lesson-diff beginner">BEGINNER</span>
+            <button class="lesson-complete-btn" data-lesson="L05" onclick="toggleComplete('L05', this)">✓ MARK DONE</button>
+          </div>
+          <div class="lesson-lock-overlay">
+            <div class="lock-icon">🔒</div>
+            <div class="lock-msg">Sign up free to unlock this lesson</div>
+            <button class="lock-cta" onclick="openAuth('signup')">UNLOCK NOW</button>
+          </div>
+        </div>
+
+        <div class="lesson-card reveal lesson-locked-card" data-lesson="L06" style="transition-delay:0.5s" id="card-L06">
+          <div class="lesson-header beginner-header">
+            <span class="lesson-num">L06</span><span class="lesson-tag">ROBOTICS</span>
+          </div>
+          <h3 class="lesson-title">Ohm's Law &amp; Basic Components</h3>
+          <p class="lesson-body">Before wiring anything, understand Ohm's Law: <strong>V = I × R</strong>. Key components: resistors (limit current), capacitors (store charge), LEDs (emit light), transistors (switch/amplify).</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 V = Voltage (V), I = Current (A), R = Resistance (Ω)</div>
+            <div class="kp">🔑 LED needs ~20mA — use 220Ω resistor with 5V supply</div>
+            <div class="kp">🔑 Color bands on resistors encode their resistance value</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://www.khanacademy.org/science/physics/circuits-topic" target="_blank" rel="noopener" class="lesson-ext-link">📖 Khan Academy: Circuits</a>
+            <a href="https://www.allaboutcircuits.com/textbook/direct-current/chpt-2/voltage-current-resistance-relate/" target="_blank" rel="noopener" class="lesson-ext-link">📖 All About Circuits: Ohm's Law</a>
+          </div>
+          <div class="lesson-footer">
+            <span class="lesson-time">⏱ 7 min</span>
+            <span class="lesson-diff beginner">BEGINNER</span>
+            <button class="lesson-complete-btn" data-lesson="L06" onclick="toggleComplete('L06', this)">✓ MARK DONE</button>
+          </div>
+          <div class="lesson-lock-overlay">
+            <div class="lock-icon">🔒</div>
+            <div class="lock-msg">Sign up free to unlock this lesson</div>
+            <button class="lock-cta" onclick="openAuth('signup')">UNLOCK NOW</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Progress bar (logged in only) -->
+      <div class="level-progress hidden" id="progress-beginner">
+        <div class="progress-label">BEGINNER PROGRESS</div>
+        <div class="progress-track"><div class="progress-fill" id="pfill-beginner"></div></div>
+        <div class="progress-count" id="pcount-beginner">0 / 6 lessons</div>
+      </div>
+    </div>
+
+    <!-- INTERMEDIATE PANEL (fully locked for guests) -->
+    <div class="lesson-panel" id="lessons-intermediate">
+      <div class="lesson-track-label">
+        <span class="track-dot intermediate"></span> INTERMEDIATE TRACK — DEEPER PROTOCOLS &amp; SYSTEMS
+      </div>
+
+      <div class="level-gate" id="gate-intermediate">
+        <div class="gate-icon">🔒</div>
+        <div class="gate-title">INTERMEDIATE LESSONS LOCKED</div>
+        <div class="gate-desc">Create a free account to unlock 6 intermediate lessons covering encryption, sensors, SQL injection, motor control, network scanning, and I2C communication.</div>
+        <button class="btn-primary" onclick="openAuth('signup')">SIGN UP — IT'S FREE</button>
+        <button class="btn-secondary" style="margin-top:10px" onclick="openAuth('login')">ALREADY HAVE AN ACCOUNT? LOG IN</button>
+      </div>
+
+      <div class="lesson-grid" id="grid-intermediate">
+        <div class="lesson-card reveal">
+          <div class="lesson-header intermediate-header"><span class="lesson-num">L07</span><span class="lesson-tag">CYBER</span></div>
+          <h3 class="lesson-title">Encryption Deep Dive</h3>
+          <p class="lesson-body">Encryption converts plaintext into ciphertext using a key. <strong>Symmetric</strong> (AES) uses one key for both operations. <strong>Asymmetric</strong> (RSA, ECC) uses a public key to encrypt and a private key to decrypt — the backbone of HTTPS.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 AES-256: current gold standard for symmetric encryption</div>
+            <div class="kp">🔑 RSA-2048: standard for asymmetric key exchange</div>
+            <div class="kp">🔑 TLS/SSL wraps all HTTPS traffic in encrypted tunnels</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://www.cloudflare.com/learning/ssl/what-is-encryption/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Cloudflare: What is Encryption?</a>
+            <a href="https://www.youtube.com/watch?v=AQDCe585Lnc" target="_blank" rel="noopener" class="lesson-ext-link">🎥 YouTube: Asymmetric Encryption Explained</a>
+            <a href="https://cryptohack.org/" target="_blank" rel="noopener" class="lesson-ext-link">🎮 CryptoHack: Learn Cryptography by Solving Challenges</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 10 min</span><span class="lesson-diff intermediate">INTERMEDIATE</span><button class="lesson-complete-btn" data-lesson="L07" onclick="toggleComplete('L07', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.1s">
+          <div class="lesson-header intermediate-header"><span class="lesson-num">L08</span><span class="lesson-tag">ROBOTICS</span></div>
+          <h3 class="lesson-title">Sensors &amp; Analog Input</h3>
+          <p class="lesson-body">Sensors convert physical phenomena into electrical signals. Arduino's 6 analog pins use a 10-bit ADC to read voltages 0–5V as values 0–1023. Common sensors: ultrasonic (distance), DHT11 (temperature), PIR (motion).</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 <code>analogRead(A0)</code> returns 0–1023 based on voltage</div>
+            <div class="kp">🔑 ADC resolution: 5V / 1024 ≈ 4.9mV per step</div>
+            <div class="kp">🔑 Use <code>map(val, 0, 1023, 0, 100)</code> for real-world units</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://docs.arduino.cc/learn/microcontrollers/analog-input/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Arduino: Analog Input Tutorial</a>
+            <a href="https://randomnerdtutorials.com/complete-guide-for-ultrasonic-sensor-hc-sr04/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Random Nerd: HC-SR04 Ultrasonic Guide</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 9 min</span><span class="lesson-diff intermediate">INTERMEDIATE</span><button class="lesson-complete-btn" data-lesson="L08" onclick="toggleComplete('L08', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.2s">
+          <div class="lesson-header intermediate-header"><span class="lesson-num">L09</span><span class="lesson-tag">CYBER</span></div>
+          <h3 class="lesson-title">SQL Injection &amp; Web Attacks</h3>
+          <p class="lesson-body">SQL injection inserts malicious SQL code into input fields to manipulate databases. Input like <code>' OR '1'='1</code> can bypass login forms. Defense: parameterized queries and input sanitization — never trust user input.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 Use prepared statements — never concatenate user input into SQL</div>
+            <div class="kp">🔑 XSS: injecting scripts into pages viewed by other users</div>
+            <div class="kp">🔑 CSRF: tricking authenticated users into unwanted actions</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://portswigger.net/web-security/sql-injection" target="_blank" rel="noopener" class="lesson-ext-link">📖 PortSwigger: SQL Injection Labs (free)</a>
+            <a href="https://tryhackme.com/room/sqlilab" target="_blank" rel="noopener" class="lesson-ext-link">🎮 TryHackMe: SQL Injection Lab</a>
+            <a href="https://owasp.org/www-community/attacks/SQL_Injection" target="_blank" rel="noopener" class="lesson-ext-link">📖 OWASP: SQL Injection Reference</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 12 min</span><span class="lesson-diff intermediate">INTERMEDIATE</span><button class="lesson-complete-btn" data-lesson="L09" onclick="toggleComplete('L09', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.3s">
+          <div class="lesson-header intermediate-header"><span class="lesson-num">L10</span><span class="lesson-tag">ROBOTICS</span></div>
+          <h3 class="lesson-title">PWM &amp; Motor Control</h3>
+          <p class="lesson-body">PWM (Pulse Width Modulation) simulates analog output by rapidly toggling a digital pin. Duty cycle controls average voltage — 50% = ~2.5V. Used for LED brightness, servo angle, and DC motor speed.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 <code>analogWrite(pin, 0–255)</code> sets PWM duty cycle</div>
+            <div class="kp">🔑 Servo: 0° = 1ms pulse, 90° = 1.5ms, 180° = 2ms</div>
+            <div class="kp">🔑 H-Bridge (L298N) needed to reverse DC motor direction</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://docs.arduino.cc/learn/microcontrollers/analog-output/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Arduino: PWM & Analog Output</a>
+            <a href="https://randomnerdtutorials.com/arduino-servo-motors/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Random Nerd: Servo Motor Control</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 11 min</span><span class="lesson-diff intermediate">INTERMEDIATE</span><button class="lesson-complete-btn" data-lesson="L10" onclick="toggleComplete('L10', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.4s">
+          <div class="lesson-header intermediate-header"><span class="lesson-num">L11</span><span class="lesson-tag">CYBER</span></div>
+          <h3 class="lesson-title">Network Scanning &amp; Firewalls</h3>
+          <p class="lesson-body">Network scanning (e.g. Nmap) discovers live hosts, open ports, and running services. Firewalls filter traffic by rules — blocking suspicious ports and IPs. Understanding scanning helps defenders know what attackers see.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 <code>nmap -sV 192.168.1.1</code> reveals service versions</div>
+            <div class="kp">🔑 Stateful firewall tracks connection state, not just ports</div>
+            <div class="kp">🔑 DMZ: isolates public-facing servers from internal network</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://nmap.org/book/man.html" target="_blank" rel="noopener" class="lesson-ext-link">📖 Nmap: Official Reference Guide</a>
+            <a href="https://tryhackme.com/room/furthernmap" target="_blank" rel="noopener" class="lesson-ext-link">🎮 TryHackMe: Further Nmap</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 10 min</span><span class="lesson-diff intermediate">INTERMEDIATE</span><button class="lesson-complete-btn" data-lesson="L11" onclick="toggleComplete('L11', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.5s">
+          <div class="lesson-header intermediate-header"><span class="lesson-num">L12</span><span class="lesson-tag">ROBOTICS</span></div>
+          <h3 class="lesson-title">I2C &amp; SPI Communication</h3>
+          <p class="lesson-body">I2C uses 2 wires (SDA + SCL) to connect multiple devices with unique addresses. SPI uses 4 wires and is faster but needs a chip-select per device. Both are essential for connecting displays, sensors, and memory.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 I2C: up to 127 devices on one bus using 7-bit addresses</div>
+            <div class="kp">🔑 SPI: MOSI, MISO, SCK, CS — full-duplex, higher speed</div>
+            <div class="kp">🔑 Wire.h handles I2C on Arduino (A4=SDA, A5=SCL)</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://learn.sparkfun.com/tutorials/i2c/all" target="_blank" rel="noopener" class="lesson-ext-link">📖 SparkFun: I2C Tutorial</a>
+            <a href="https://learn.sparkfun.com/tutorials/serial-peripheral-interface-spi/all" target="_blank" rel="noopener" class="lesson-ext-link">📖 SparkFun: SPI Tutorial</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 13 min</span><span class="lesson-diff intermediate">INTERMEDIATE</span><button class="lesson-complete-btn" data-lesson="L12" onclick="toggleComplete('L12', this)">✓ MARK DONE</button></div>
+        </div>
+      </div>
+
+      <div class="level-progress hidden" id="progress-intermediate">
+        <div class="progress-label">INTERMEDIATE PROGRESS</div>
+        <div class="progress-track"><div class="progress-fill" id="pfill-intermediate"></div></div>
+        <div class="progress-count" id="pcount-intermediate">0 / 6 lessons</div>
+      </div>
+    </div>
+
+    <!-- ADVANCED PANEL (fully locked for guests) -->
+    <div class="lesson-panel" id="lessons-advanced">
+      <div class="lesson-track-label">
+        <span class="track-dot advanced"></span> ADVANCED TRACK — EXPERT SYSTEMS &amp; ATTACK SURFACES
+      </div>
+
+      <div class="level-gate" id="gate-advanced">
+        <div class="gate-icon">🔒</div>
+        <div class="gate-title">ADVANCED LESSONS LOCKED</div>
+        <div class="gate-desc">Sign in to access 6 advanced lessons on penetration testing, RTOS, binary exploitation, PID control, IoT security, and cryptographic protocols.</div>
+        <button class="btn-primary" onclick="openAuth('signup')">SIGN UP — IT'S FREE</button>
+        <button class="btn-secondary" style="margin-top:10px" onclick="openAuth('login')">ALREADY HAVE AN ACCOUNT? LOG IN</button>
+      </div>
+
+      <div class="lesson-grid" id="grid-advanced">
+        <div class="lesson-card reveal">
+          <div class="lesson-header advanced-header"><span class="lesson-num">L13</span><span class="lesson-tag">CYBER</span></div>
+          <h3 class="lesson-title">Penetration Testing Methodology</h3>
+          <p class="lesson-body">Pen testing is authorized hacking to find vulnerabilities first. Phases: <strong>Recon → Scan → Exploit → Post-Exploit → Report</strong>. Tools: Metasploit, Burp Suite, Wireshark, Nmap.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 Passive recon: OSINT, WHOIS, DNS — no direct target contact</div>
+            <div class="kp">🔑 Metasploit: framework for exploiting known CVEs</div>
+            <div class="kp">🔑 Always obtain written authorization before testing any system</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://www.hackthebox.com/blog/introduction-to-pen-testing" target="_blank" rel="noopener" class="lesson-ext-link">📖 HackTheBox: Intro to Pen Testing</a>
+            <a href="https://tryhackme.com/path/outline/pentesting" target="_blank" rel="noopener" class="lesson-ext-link">🎮 TryHackMe: Penetration Testing Path</a>
+            <a href="https://www.offensive-security.com/metasploit-unleashed/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Offensive Security: Metasploit Unleashed (free)</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 15 min</span><span class="lesson-diff advanced">ADVANCED</span><button class="lesson-complete-btn" data-lesson="L13" onclick="toggleComplete('L13', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.1s">
+          <div class="lesson-header advanced-header"><span class="lesson-num">L14</span><span class="lesson-tag">ROBOTICS</span></div>
+          <h3 class="lesson-title">RTOS &amp; Real-Time Systems</h3>
+          <p class="lesson-body">An RTOS guarantees tasks execute within strict time deadlines. FreeRTOS runs on Arduino and ESP32, enabling multitasking via threads, semaphores, and message queues — essential for complex autonomous robots.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 Task scheduler manages concurrent execution priorities</div>
+            <div class="kp">🔑 Semaphores prevent race conditions on shared resources</div>
+            <div class="kp">🔑 Watchdog timer resets the system if a task hangs</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://www.freertos.org/Documentation/01-FreeRTOS-quick-start/01-Beginners-guide/01-RTOS-fundamentals" target="_blank" rel="noopener" class="lesson-ext-link">📖 FreeRTOS: Official Documentation</a>
+            <a href="https://randomnerdtutorials.com/esp32-freertos-arduino/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Random Nerd: FreeRTOS on ESP32</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 18 min</span><span class="lesson-diff advanced">ADVANCED</span><button class="lesson-complete-btn" data-lesson="L14" onclick="toggleComplete('L14', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.2s">
+          <div class="lesson-header advanced-header"><span class="lesson-num">L15</span><span class="lesson-tag">CYBER</span></div>
+          <h3 class="lesson-title">Reverse Engineering &amp; Binary Exploitation</h3>
+          <p class="lesson-body">Binary exploitation abuses flaws in compiled programs. Buffer overflows overwrite stack memory to hijack execution. Tools: GDB, pwndbg, Ghidra (disassembler), pwntools (exploit scripting).</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 Stack layout: locals → saved RBP → return address</div>
+            <div class="kp">🔑 NX bit, ASLR, and stack canaries are modern mitigations</div>
+            <div class="kp">🔑 ROP chains string gadgets to bypass NX protection</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://ghidra-sre.org/" target="_blank" rel="noopener" class="lesson-ext-link">🛠 Ghidra: Free NSA Reverse Engineering Tool</a>
+            <a href="https://pwn.college/" target="_blank" rel="noopener" class="lesson-ext-link">🎮 pwn.college: Binary Exploitation Practice</a>
+            <a href="https://tryhackme.com/room/binaryheap" target="_blank" rel="noopener" class="lesson-ext-link">🎮 TryHackMe: Buffer Overflow Room</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 20 min</span><span class="lesson-diff advanced">ADVANCED</span><button class="lesson-complete-btn" data-lesson="L15" onclick="toggleComplete('L15', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.3s">
+          <div class="lesson-header advanced-header"><span class="lesson-num">L16</span><span class="lesson-tag">ROBOTICS</span></div>
+          <h3 class="lesson-title">PID Control Systems</h3>
+          <p class="lesson-body">PID (Proportional-Integral-Derivative) control continuously calculates an error between a desired setpoint and measured output, applying corrections. Foundation of drones, balancing robots, and CNC machines.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 P term: proportional to current error — fast response</div>
+            <div class="kp">🔑 I term: accumulates past errors — eliminates steady-state error</div>
+            <div class="kp">🔑 D term: predicts future error — dampens overshoot</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://www.youtube.com/watch?v=wkfEZmsQqiA" target="_blank" rel="noopener" class="lesson-ext-link">🎥 YouTube: PID Control — A Brief Introduction</a>
+            <a href="https://projects.raspberrypi.org/en/projects/robotics-with-raspberry-pi" target="_blank" rel="noopener" class="lesson-ext-link">📖 Raspberry Pi: Robotics Projects</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 16 min</span><span class="lesson-diff advanced">ADVANCED</span><button class="lesson-complete-btn" data-lesson="L16" onclick="toggleComplete('L16', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.4s">
+          <div class="lesson-header advanced-header"><span class="lesson-num">L17</span><span class="lesson-tag">BOTH</span></div>
+          <h3 class="lesson-title">IoT Security &amp; Attack Surfaces</h3>
+          <p class="lesson-body">IoT devices often run with default credentials and no encryption. Attack vectors: firmware extraction, UART debug interfaces, weak OTA updates. Security must be designed in from day one.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 JTAG/UART: hardware debug ports expose firmware and shell access</div>
+            <div class="kp">🔑 Firmware analysis: binwalk, strings, Ghidra</div>
+            <div class="kp">🔑 Secure boot + code signing prevent malicious firmware</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://owasp.org/www-project-internet-of-things/" target="_blank" rel="noopener" class="lesson-ext-link">📖 OWASP: IoT Security Top 10</a>
+            <a href="https://tryhackme.com/room/iotintro" target="_blank" rel="noopener" class="lesson-ext-link">🎮 TryHackMe: Introduction to IoT Security</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 14 min</span><span class="lesson-diff advanced">ADVANCED</span><button class="lesson-complete-btn" data-lesson="L17" onclick="toggleComplete('L17', this)">✓ MARK DONE</button></div>
+        </div>
+
+        <div class="lesson-card reveal" style="transition-delay:0.5s">
+          <div class="lesson-header advanced-header"><span class="lesson-num">L18</span><span class="lesson-tag">CYBER</span></div>
+          <h3 class="lesson-title">Cryptographic Protocols &amp; PKI</h3>
+          <p class="lesson-body">PKI is the system behind SSL/TLS certificates. CAs sign certificates to prove identity. Key concepts: Diffie-Hellman key exchange, ECDSA digital signatures, and X.509 certificate chains.</p>
+          <div class="lesson-key-points">
+            <div class="kp">🔑 Diffie-Hellman: agree on a shared secret over a public channel</div>
+            <div class="kp">🔑 X.509: binds public keys to identities via CA signatures</div>
+            <div class="kp">🔑 Certificate pinning protects apps from rogue CA attacks</div>
+          </div>
+          <div class="lesson-links" data-auth-required="true">
+            <div class="lesson-links-label">// GO DEEPER</div>
+            <a href="https://www.cloudflare.com/learning/ssl/what-is-a-certificate-authority/" target="_blank" rel="noopener" class="lesson-ext-link">📖 Cloudflare: What is a CA?</a>
+            <a href="https://cryptohack.org/courses/public-key/" target="_blank" rel="noopener" class="lesson-ext-link">🎮 CryptoHack: Public Key Cryptography</a>
+          </div>
+          <div class="lesson-footer"><span class="lesson-time">⏱ 17 min</span><span class="lesson-diff advanced">ADVANCED</span><button class="lesson-complete-btn" data-lesson="L18" onclick="toggleComplete('L18', this)">✓ MARK DONE</button></div>
+        </div>
+      </div>
+
+      <div class="level-progress hidden" id="progress-advanced">
+        <div class="progress-label">ADVANCED PROGRESS</div>
+        <div class="progress-track"><div class="progress-fill" id="pfill-advanced"></div></div>
+        <div class="progress-count" id="pcount-advanced">0 / 6 lessons</div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">◆ MODULE BOUNDARY ◆</div><div class="divider-line"></div></div>
+
+  <section id="arduino-section">
+    <div class="section-label">REFERENCE</div>
+    <h2 class="section-title reveal">Arduino <em>Uno</em> Deep Dive</h2>
+    <p class="section-desc reveal">The ATmega328P — an 8-bit powerhouse that's been the gateway into embedded systems for millions of makers.</p>
+    <div class="arduino-layout">
+      <div>
+        <div class="arduino-board reveal">
+          <br>
+          <div style="margin-top:12px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:#2a8a4a;margin-bottom:6px;">DIGITAL PINS 0–13</div>
+            <div class="pin-row">
+              <div class="pin active"><div class="pin-tooltip">D0/RX</div></div>
+              <div class="pin active"><div class="pin-tooltip">D1/TX</div></div>
+              <div class="pin"><div class="pin-tooltip">D2</div></div>
+              <div class="pin"><div class="pin-tooltip">D3 PWM</div></div>
+              <div class="pin"><div class="pin-tooltip">D4</div></div>
+              <div class="pin"><div class="pin-tooltip">D5 PWM</div></div>
+              <div class="pin"><div class="pin-tooltip">D6 PWM</div></div>
+              <div class="pin"><div class="pin-tooltip">D7</div></div>
+              <div class="pin"><div class="pin-tooltip">D8</div></div>
+              <div class="pin"><div class="pin-tooltip">D9 PWM</div></div>
+              <div class="pin"><div class="pin-tooltip">D10</div></div>
+              <div class="pin"><div class="pin-tooltip">D11 PWM</div></div>
+              <div class="pin"><div class="pin-tooltip">D12</div></div>
+              <div class="pin active"><div class="pin-tooltip">D13 LED</div></div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin:12px 0;">
+            <div><span class="board-led"></span><span class="board-led green-led"></span></div>
+            <div class="board-body-chip">ATmega<br>328P</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:#2a6a3a;">16MHz</div>
+          </div>
+          <div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:#2a8a4a;margin-bottom:6px;">ANALOG PINS A0–A5</div>
+            <div class="pin-row">
+              <div class="pin" style="background:#888;"><div class="pin-tooltip">A0</div></div>
+              <div class="pin" style="background:#888;"><div class="pin-tooltip">A1</div></div>
+              <div class="pin" style="background:#888;"><div class="pin-tooltip">A2</div></div>
+              <div class="pin" style="background:#888;"><div class="pin-tooltip">A3</div></div>
+              <div class="pin" style="background:#888;"><div class="pin-tooltip">A4 SDA</div></div>
+              <div class="pin" style="background:#888;"><div class="pin-tooltip">A5 SCL</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="led-demo reveal">
+          <div class="led-demo-title">// INTERACTIVE — CLICK LEDS</div>
+          <div class="led-controls">
+            <div class="led-circle" id="ledR" onclick="toggleLed('ledR')"></div>
+            <div class="led-circle" id="ledG" onclick="toggleLed('ledG')"></div>
+            <div class="led-circle" id="ledB" onclick="toggleLed('ledB')"></div>
+            <button class="led-btn" onclick="blinkAll()">BLINK ALL</button>
+            <button class="led-btn" onclick="allOff()">RESET</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="specs-list reveal">
+          <div class="spec-row"><span class="spec-key">MICROCONTROLLER</span><span class="spec-val">ATmega328P</span></div>
+          <div class="spec-row"><span class="spec-key">CLOCK SPEED</span><div style="display:flex;align-items:center;gap:10px;"><div class="spec-bar-container"><div class="spec-bar" style="width:35%"></div></div><span class="spec-val">16 MHz</span></div></div>
+          <div class="spec-row"><span class="spec-key">FLASH MEMORY</span><div style="display:flex;align-items:center;gap:10px;"><div class="spec-bar-container"><div class="spec-bar" style="width:60%;animation-delay:0.2s"></div></div><span class="spec-val">32 KB</span></div></div>
+          <div class="spec-row"><span class="spec-key">SRAM</span><span class="spec-val">2 KB</span></div>
+          <div class="spec-row"><span class="spec-key">DIGITAL I/O</span><span class="spec-val">14 PINS</span></div>
+          <div class="spec-row"><span class="spec-key">PWM OUTPUTS</span><span class="spec-val">6 PINS</span></div>
+          <div class="spec-row"><span class="spec-key">ANALOG INPUTS</span><span class="spec-val">6 PINS</span></div>
+          <div class="spec-row"><span class="spec-key">OPERATING VOLTAGE</span><span class="spec-val" style="color:var(--orange)">5V</span></div>
+        </div>
+        <div class="code-block reveal" data-lang="ARDUINO C++">
+<span class="c-comment">// Blink LED — Hello World of Robotics</span>
+<span class="c-keyword">const</span> <span class="c-type">int</span> ledPin = <span class="c-num">13</span>;
+
+<span class="c-type">void</span> <span class="c-func">setup</span>() {
+  <span class="c-func">pinMode</span>(ledPin, OUTPUT);
+  <span class="c-func">Serial.begin</span>(<span class="c-num">9600</span>);
+}
+
+<span class="c-type">void</span> <span class="c-func">loop</span>() {
+  <span class="c-func">digitalWrite</span>(ledPin, HIGH);
+  <span class="c-func">delay</span>(<span class="c-num">1000</span>);
+  <span class="c-func">digitalWrite</span>(ledPin, LOW);
+  <span class="c-func">delay</span>(<span class="c-num">1000</span>);
+  <span class="c-func">Serial.println</span>(<span class="c-string">"BLINK"</span>);
+}</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">◆ MODULE BOUNDARY ◆</div><div class="divider-line"></div></div>
+
+  <section id="cyber-section">
+    <div class="section-label">REFERENCE</div>
+    <h2 class="section-title reveal">Threat <em>Matrix</em></h2>
+    <p class="section-desc reveal">Know your adversaries. Every attack follows a pattern — and every pattern has a defense.</p>
+    <div class="threat-grid reveal">
+      <div class="threat-cell critical"><div class="threat-level">■ CRITICAL</div><div class="threat-name">ZERO-DAY</div><div class="threat-desc">Unknown vulnerability exploited before a patch exists. No defense is ready.</div></div>
+      <div class="threat-cell critical"><div class="threat-level">■ CRITICAL</div><div class="threat-name">RANSOMWARE</div><div class="threat-desc">Malware encrypts files; attacker demands payment for the decryption key.</div></div>
+      <div class="threat-cell high"><div class="threat-level">▲ HIGH</div><div class="threat-name">PHISHING</div><div class="threat-desc">Fraudulent emails trick users into revealing credentials or installing malware.</div></div>
+      <div class="threat-cell high"><div class="threat-level">▲ HIGH</div><div class="threat-name">SQL INJECTION</div><div class="threat-desc">Malicious SQL manipulates or dumps a database through unsanitized inputs.</div></div>
+      <div class="threat-cell medium"><div class="threat-level">◆ MEDIUM</div><div class="threat-name">MAN-IN-MIDDLE</div><div class="threat-desc">Attacker intercepts communication to eavesdrop or modify data in transit.</div></div>
+      <div class="threat-cell medium"><div class="threat-level">◆ MEDIUM</div><div class="threat-name">DDoS ATTACK</div><div class="threat-desc">Floods a server with requests from multiple sources causing unavailability.</div></div>
+      <div class="threat-cell low"><div class="threat-level">● LOW</div><div class="threat-name">SOCIAL ENG.</div><div class="threat-desc">Psychologically manipulating people into revealing confidential information.</div></div>
+      <div class="threat-cell low"><div class="threat-level">● LOW</div><div class="threat-name">BRUTE FORCE</div><div class="threat-desc">Trying all possible password combinations. Defeated by complexity + lockouts.</div></div>
+      <div class="threat-cell medium"><div class="threat-level">◆ MEDIUM</div><div class="threat-name">XSS ATTACK</div><div class="threat-desc">Injects malicious scripts into pages viewed by users, hijacking sessions.</div></div>
+    </div>
+  </section>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">◆ MODULE BOUNDARY ◆</div><div class="divider-line"></div></div>
+
+  <section id="circuit-section">
+    <div class="section-label">REFERENCE</div>
+    <h2 class="section-title reveal">Basic <em>Circuits</em></h2>
+    <p class="section-desc reveal">Before you program, you wire. Ohm's Law governs everything.</p>
+    <div class="cards-grid" style="margin-top:0">
+      <div class="concept-card reveal"><span class="card-icon" style="color:var(--green)">🔋</span><div class="card-num">OHM'S LAW</div><div class="card-title">V = I × R</div><div class="card-body">Voltage equals Current times Resistance. The most fundamental equation in all of electronics.</div><span class="card-tag">CIRCUIT</span></div>
+      <div class="concept-card orange reveal" style="transition-delay:0.1s"><span class="card-icon" style="color:var(--orange)">⚡</span><div class="card-num">COMPONENTS</div><div class="card-title">RESISTORS</div><div class="card-body">Limit current flow. Measured in Ohms (Ω). Color bands encode resistance value. Always use one with LEDs!</div><span class="card-tag orange">PASSIVE</span></div>
+      <div class="concept-card cyan reveal" style="transition-delay:0.2s"><span class="card-icon" style="color:var(--cyan)">💡</span><div class="card-num">COMPONENTS</div><div class="card-title">LED DIODES</div><div class="card-body">Allow current in one direction. Long leg = anode (+), short = cathode (−). Needs 220Ω–470Ω resistor.</div><span class="card-tag cyan">OUTPUT</span></div>
+    </div>
+    <div class="circuit-diagram reveal">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--dim);margin-bottom:16px;letter-spacing:2px;">// LED CIRCUIT SCHEMATIC</div>
+      <svg class="circuit-svg" viewBox="0 0 500 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="60" width="100" height="80" fill="#0a1f12" stroke="#00ff9f" stroke-width="1.5"/>
+        <text x="35" y="92" fill="#00ff9f" font-family="Share Tech Mono" font-size="8" letter-spacing="1">ARDUINO</text>
+        <text x="40" y="106" fill="#3a6b50" font-family="Share Tech Mono" font-size="7">UNO</text>
+        <text x="30" y="122" fill="#00d4ff" font-family="Share Tech Mono" font-size="7">PIN 13 → +</text>
+        <text x="30" y="134" fill="#3a6b50" font-family="Share Tech Mono" font-size="7">GND → −</text>
+        <line x1="110" y1="118" x2="160" y2="118" stroke="#00ff9f" stroke-width="2"/>
+        <rect x="160" y="110" width="60" height="16" fill="#1a0a00" stroke="#ff6b2b" stroke-width="1.5"/>
+        <text x="168" y="122" fill="#ff6b2b" font-family="Share Tech Mono" font-size="7">220Ω</text>
+        <line x1="220" y1="118" x2="270" y2="118" stroke="#00ff9f" stroke-width="2"/>
+        <polygon points="270,108 270,128 290,118" fill="#00ff9f" opacity="0.6"/>
+        <line x1="290" y1="108" x2="290" y2="128" stroke="#00ff9f" stroke-width="2"/>
+        <line x1="286" y1="105" x2="294" y2="105" stroke="#00ff9f" stroke-width="1.5"/>
+        <line x1="290" y1="118" x2="340" y2="118" stroke="#3a6b50" stroke-width="2"/>
+        <line x1="340" y1="118" x2="340" y2="170" stroke="#3a6b50" stroke-width="2"/>
+        <line x1="340" y1="170" x2="110" y2="170" stroke="#3a6b50" stroke-width="2"/>
+        <line x1="110" y1="170" x2="110" y2="140" stroke="#3a6b50" stroke-width="2"/>
+        <text x="160" y="95" fill="#3a6b50" font-family="Share Tech Mono" font-size="7">RESISTOR</text>
+        <text x="264" y="95" fill="#3a6b50" font-family="Share Tech Mono" font-size="7">LED</text>
+        <text x="350" y="150" fill="#3a6b50" font-family="Share Tech Mono" font-size="7">GND</text>
+        <text x="120" y="112" fill="#00d4ff" font-family="Share Tech Mono" font-size="7">5V</text>
+      </svg>
+    </div>
+  </section>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">◆ MODULE BOUNDARY ◆</div><div class="divider-line"></div></div>
+
+  <section id="quiz-section">
+    <div class="section-label">KNOWLEDGE CHECK</div>
+    <h2 class="section-title reveal">Interactive <em>Quiz</em></h2>
+    <p class="section-desc reveal">Test your knowledge. Questions get harder as you progress. <span class="quiz-logged-msg hidden" id="quizLoggedMsg">Scores saved to your account.</span></p>
+
+    <div class="quiz-scoreboard reveal">
+      <div class="score-cell"><div class="score-val" id="score-total">0</div><div class="score-lbl">TOTAL SCORE</div></div>
+      <div class="score-cell"><div class="score-val" id="score-correct">0</div><div class="score-lbl">CORRECT</div></div>
+      <div class="score-cell"><div class="score-val" id="score-streak">0</div><div class="score-lbl">STREAK 🔥</div></div>
+      <div class="score-cell"><div class="score-val" id="score-level">—</div><div class="score-lbl">CURRENT LEVEL</div></div>
+    </div>
+
+    <div class="quiz-level-tabs reveal">
+      <button class="qlevel-btn active" onclick="startQuiz('beginner', this)">
+        <span>🟢</span> BEGINNER <span class="qlevel-pts">+10 pts</span>
+      </button>
+      <button class="qlevel-btn" id="qbtn-intermediate" onclick="handleQuizLevelClick('intermediate', this)">
+        <span>🟡</span> INTERMEDIATE <span class="qlevel-pts">+20 pts</span>
+        <span class="qlevel-lock" id="lock-intermediate">🔒</span>
+      </button>
+      <button class="qlevel-btn" id="qbtn-advanced" onclick="handleQuizLevelClick('advanced', this)">
+        <span>🔴</span> ADVANCED <span class="qlevel-pts">+30 pts</span>
+        <span class="qlevel-lock" id="lock-advanced">🔒</span>
+      </button>
+    </div>
+
+    <!-- Guess Mode banner for guests -->
+    <div class="quiz-guest-banner" id="quizGuestBanner">
+      <span>🎮 <strong>GUEST MODE</strong> — You're playing with basic questions only. <button class="auth-link" onclick="openAuth('signup')">Sign up</button> to unlock all levels, hints, saved scores &amp; leaderboard.</span>
+    </div>
+
+    <!-- Leaderboard (logged in only) -->
+    <div class="quiz-leaderboard hidden" id="quizLeaderboard">
+      <div class="leaderboard-header">
+        <span class="leaderboard-title">🏆 LEADERBOARD</span>
+        <div class="leaderboard-tabs">
+          <button class="lb-tab active" onclick="loadLeaderboard('beginner', this)">🟢 BEG</button>
+          <button class="lb-tab" onclick="loadLeaderboard('intermediate', this)">🟡 INT</button>
+          <button class="lb-tab" onclick="loadLeaderboard('advanced', this)">🔴 ADV</button>
+        </div>
+      </div>
+      <div class="leaderboard-list" id="leaderboardList">
+        <div class="lb-loading">Loading...</div>
+      </div>
+    </div>
+
+    <div class="quiz-arena reveal" id="quizArena">
+      <div class="quiz-screen active" id="quiz-intro">
+        <div class="quiz-intro-icon">🧠</div>
+        <div class="quiz-intro-title">READY TO BE TESTED?</div>
+        <div class="quiz-intro-sub">Select a difficulty above, then start. 8 randomized questions per round.</div>
+        <button class="btn-primary" onclick="beginQuiz()" style="margin-top:24px;">START QUIZ</button>
+      </div>
+
+      <div class="quiz-screen" id="quiz-question">
+        <div class="quiz-meta">
+          <span class="quiz-category" id="qCategory">CYBER</span>
+          <span class="quiz-progress" id="qProgress">Q 1 / 8</span>
+          <span class="quiz-difficulty" id="qDifficulty">BEGINNER</span>
+        </div>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="qProgressFill"></div>
+        </div>
+        <div class="quiz-q-text" id="qText">Loading...</div>
+        <div class="quiz-options" id="qOptions"></div>
+
+        <!-- Hint (logged in only) -->
+        <div class="quiz-hint-wrap hidden" id="quizHintWrap">
+          <button class="quiz-hint-btn" id="quizHintBtn" onclick="showHint()">💡 USE HINT <span class="hint-cost">(-5 pts)</span></button>
+          <div class="quiz-hint-text hidden" id="quizHintText"></div>
+        </div>
+
+        <div class="quiz-feedback" id="qFeedback"></div>
+      </div>
+
+      <div class="quiz-screen" id="quiz-results">
+        <div class="result-grade" id="resultGrade">A+</div>
+        <div class="result-title" id="resultTitle">EXCELLENT</div>
+        <div class="result-stats">
+          <div class="result-stat"><span id="r-correct">0</span><small>CORRECT</small></div>
+          <div class="result-stat"><span id="r-total">0</span><small>TOTAL</small></div>
+          <div class="result-stat"><span id="r-pts">0</span><small>POINTS EARNED</small></div>
+        </div>
+        <div class="result-msg" id="resultMsg"></div>
+        <div class="result-save-msg hidden" id="resultSaveMsg">✅ Score saved to your account!</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;">
+          <button class="btn-primary"   onclick="beginQuiz()">RETRY</button>
+          <button class="btn-secondary" onclick="nextLevel()">NEXT LEVEL →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-icon">◆ MODULE BOUNDARY ◆</div><div class="divider-line"></div></div>
+
+  <section id="tips-section">
+    <div class="section-label">FIELD NOTES</div>
+    <h2 class="section-title reveal">Pro <em>Tips</em> &amp; Protocols</h2>
+    <div class="tips-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('cyber-tips', this)">CYBERSECURITY</button>
+      <button class="tab-btn"        onclick="switchTab('robotics-tips', this)">ROBOTICS</button>
+      <button class="tab-btn"        onclick="switchTab('general-tips', this)">GENERAL</button>
+    </div>
+    <div class="tab-panel active" id="cyber-tips">
+      <div class="tip-item"><div class="tip-num">01</div><div class="tip-content"><div class="tip-title">USE A PASSWORD MANAGER</div><div class="tip-text">Never reuse passwords. Use Bitwarden or 1Password to generate unique, complex passwords for every account.</div></div></div>
+      <div class="tip-item"><div class="tip-num">02</div><div class="tip-content"><div class="tip-title">ENABLE MFA EVERYWHERE</div><div class="tip-text">Multi-Factor Authentication adds a second layer — even if your password leaks, attackers can't get in without the second factor.</div></div></div>
+      <div class="tip-item"><div class="tip-num">03</div><div class="tip-content"><div class="tip-title">KEEP SYSTEMS PATCHED</div><div class="tip-text">Most breaches exploit known, patchable vulnerabilities. Enable auto-updates on OS, browsers, and apps.</div></div></div>
+      <div class="tip-item"><div class="tip-num">04</div><div class="tip-content"><div class="tip-title">ZERO TRUST MINDSET</div><div class="tip-text">Never assume any network or user is safe by default. Verify every request and minimize permissions.</div></div></div>
+    </div>
+    <div class="tab-panel" id="robotics-tips">
+      <div class="tip-item"><div class="tip-num">01</div><div class="tip-content"><div class="tip-title">ALWAYS USE A RESISTOR WITH LEDs</div><div class="tip-text">LEDs burn out instantly without current-limiting resistors. Calculate: R = (Vs - Vf) / If.</div></div></div>
+      <div class="tip-item"><div class="tip-num">02</div><div class="tip-content"><div class="tip-title">PROTOTYPE ON BREADBOARD FIRST</div><div class="tip-text">Before soldering, test on breadboard. It's reusable and forgiving — catches mistakes early.</div></div></div>
+      <div class="tip-item"><div class="tip-num">03</div><div class="tip-content"><div class="tip-title">SERIAL MONITOR IS YOUR BEST FRIEND</div><div class="tip-text">Use Serial.println() to debug code. It's like console.log() for hardware.</div></div></div>
+      <div class="tip-item"><div class="tip-num">04</div><div class="tip-content"><div class="tip-title">MIND YOUR POWER RATINGS</div><div class="tip-text">Arduino's 5V pin supplies ~500mA via USB. Motors and servos need external power supplies.</div></div></div>
+    </div>
+    <div class="tab-panel" id="general-tips">
+      <div class="tip-item"><div class="tip-num">01</div><div class="tip-content"><div class="tip-title">READ DATASHEETS</div><div class="tip-text">Every component has a datasheet. It tells you pins, voltage ranges, and protocols. Never guess.</div></div></div>
+      <div class="tip-item"><div class="tip-num">02</div><div class="tip-content"><div class="tip-title">BUILD SMALL, ITERATE FAST</div><div class="tip-text">Test one component at a time. Both security and robotics reward modular, incremental building.</div></div></div>
+      <div class="tip-item"><div class="tip-num">03</div><div class="tip-content"><div class="tip-title">DOCUMENT EVERYTHING</div><div class="tip-text">Write comments, label wires, keep a README. Future-you will thank present-you every time.</div></div></div>
+      <div class="tip-item"><div class="tip-num">04</div><div class="tip-content"><div class="tip-title">JOIN COMMUNITIES</div><div class="tip-text">Arduino forums, r/arduino, Hack The Box, TryHackMe are goldmines for hands-on learning.</div></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">CYBERBOTICS</div>
+    <div class="footer-right">// SECURITY &amp; ROBOTICS 101 — EDUCATIONAL PLATFORM</div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div class="auth-overlay" id="authOverlay" onclick="closeAuthOnBg(event)">
+  <div class="auth-modal" id="authModal">
+    <button class="auth-close" onclick="closeAuth()" aria-label="Close">&times;</button>
+    <div class="auth-header">
+      <div class="auth-logo">CYBER<span>BOTICS</span></div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login"  onclick="switchAuthTab('login')">LOGIN</button>
+        <button class="auth-tab"        id="tab-signup" onclick="switchAuthTab('signup')">SIGN UP</button>
+      </div>
+    </div>
+    <div class="auth-status" id="authStatus"></div>
+    <form class="auth-form active" id="form-login" onsubmit="handleLogin(event)">
+      <div class="auth-terminal-line">// AUTHENTICATE — ENTER CREDENTIALS</div>
+      <div class="auth-field">
+        <label class="auth-label" for="login-email">EMAIL ADDRESS</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon">@</span>
+          <input class="auth-input" id="login-email" type="email" placeholder="operator@cyberbotics.io" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="auth-field">
+        <label class="auth-label" for="login-password">PASSWORD</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon">🔑</span>
+          <input class="auth-input" id="login-password" type="password" placeholder="••••••••••••" autocomplete="current-password" required>
+          <button type="button" class="auth-eye" onclick="togglePwd('login-password', this)">👁</button>
+        </div>
+      </div>
+      <div class="auth-row">
+        <label class="auth-remember"><input type="checkbox" id="remember"> <span>Remember me</span></label>
+        <button type="button" class="auth-link" onclick="switchAuthTab('forgot')">Forgot password?</button>
+      </div>
+      <button type="submit" class="auth-submit" id="login-submit">
+        <span class="submit-text">INITIALIZE SESSION</span>
+        <span class="submit-loader hidden" id="login-loader">◌</span>
+      </button>
+      <div class="auth-divider"><span>or continue with</span></div>
+      <div class="auth-oauth">
+        <button type="button" class="oauth-btn" onclick="oauthNotice('Google')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Google
+        </button>
+        <button type="button" class="oauth-btn" onclick="oauthNotice('GitHub')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </button>
+      </div>
+    </form>
+    <form class="auth-form" id="form-signup" onsubmit="handleSignup(event)">
+      <div class="auth-terminal-line">// CREATE NEW OPERATOR ACCOUNT</div>
+      <div class="auth-field">
+        <label class="auth-label" for="signup-username">USERNAME / HANDLE</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon">#</span>
+          <input class="auth-input" id="signup-username" type="text" placeholder="ghost_operator" autocomplete="username" pattern="[a-zA-Z0-9_]{3,20}" required>
+        </div>
+        <div class="auth-hint">3–20 chars, letters, numbers, underscores only</div>
+      </div>
+      <div class="auth-field">
+        <label class="auth-label" for="signup-email">EMAIL ADDRESS</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon">@</span>
+          <input class="auth-input" id="signup-email" type="email" placeholder="operator@cyberbotics.io" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="auth-field">
+        <label class="auth-label" for="signup-password">PASSWORD</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon">🔑</span>
+          <input class="auth-input" id="signup-password" type="password" placeholder="Min 8 chars" autocomplete="new-password" minlength="8" required>
+          <button type="button" class="auth-eye" onclick="togglePwd('signup-password', this)">👁</button>
+        </div>
+        <div class="auth-strength-wrap">
+          <div class="auth-strength-bar"><div class="auth-strength-fill" id="strengthFill"></div></div>
+          <span class="auth-strength-label" id="strengthLabel">—</span>
+        </div>
+      </div>
+      <div class="auth-field">
+        <label class="auth-label" for="signup-confirm">CONFIRM PASSWORD</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon">🔒</span>
+          <input class="auth-input" id="signup-confirm" type="password" placeholder="Re-enter password" autocomplete="new-password" required>
+        </div>
+      </div>
+      <label class="auth-checkbox">
+        <input type="checkbox" id="terms" required>
+        <span>I agree to the <button type="button" class="auth-link">Terms of Service</button></span>
+      </label>
+      <button type="submit" class="auth-submit" id="signup-submit">
+        <span class="submit-text">CREATE ACCOUNT</span>
+        <span class="submit-loader hidden" id="signup-loader">◌</span>
+      </button>
+    </form>
+    <form class="auth-form" id="form-forgot" onsubmit="handleForgot(event)">
+      <div class="auth-terminal-line">// RESET ACCESS CREDENTIALS</div>
+      <p class="auth-forgot-desc">Enter your email address and we'll send you a reset link.</p>
+      <div class="auth-field">
+        <label class="auth-label" for="forgot-email">EMAIL ADDRESS</label>
+        <div class="auth-input-wrap">
+          <span class="auth-input-icon">@</span>
+          <input class="auth-input" id="forgot-email" type="email" placeholder="operator@cyberbotics.io" required>
+        </div>
+      </div>
+      <button type="submit" class="auth-submit">SEND RESET LINK</button>
+      <button type="button" class="auth-link back" onclick="switchAuthTab('login')">← Back to Login</button>
+    </form>
+  </div>
+  </div>
+
+  <script src="main.js" defer></script>
+  <script src="auth.js" defer></script>
+</body>
+</html>
