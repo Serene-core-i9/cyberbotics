@@ -1,6 +1,6 @@
 'use strict';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = 'https://cyberbotics.onrender.com';
 window._cbApiBase = API_BASE;
 
 let currentUser  = null;
